@@ -7,6 +7,11 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/index.css';
 import Myhttp from '@/plugins/Myhttp';
+import Moment from 'moment';
+// 设置过滤器
+Vue.filter('fmtDate', (value, fmtStr) => {
+  return Moment(value).format(fmtStr);
+});
 // 注册插件
 Vue.use(Myhttp);
 Vue.use(ElementUI);

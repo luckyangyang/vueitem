@@ -35,25 +35,26 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      this.$http.post('login', this.fromData)
-        .then((response) => {
-          console.log(response);
-          const {meta: {msg, status}} = response.data;
-          //   console.log(msg);
-          //   console.log(status);
-          if (status === 200) {
-            this.$message.success(msg);
-            //   设置token
-            sessionStorage.setItem('token', response.data.data.token);
-            this.$router.push('/');
-          } else {
-            this.$message.error(msg);
-          }
-        })
-        .catch((err) => {
-          this.$message.error(err);
-        });
+    async handleLogin() {
+      const response = await this.$http.post('login', this.fromData);
+      console.log(response);
+      const {meta: {msg, status}} = response.data;
+      //   console.log(msg);
+      //   console.log(status);
+      if (status === 200) {
+        this.$message.success(msg);
+        //   设置token
+        sessionStorage.setItem('token', response.data.data.token);
+        this.$router.push('/');
+      } else {
+        this.$message.error(msg);
+      };
+      // .then((response) => {
+
+      // })
+      // .catch((err) => {
+      //   this.$message.error(err);
+      // });
     }
   }
 };

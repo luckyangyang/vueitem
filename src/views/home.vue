@@ -12,8 +12,8 @@
       <a href="#" class="excc" @click="logout">退出</a>
     </el-col>
   </el-header>
-  <!-- 侧边栏 -->
   <el-container>
+    <!-- 侧边栏 -->
     <el-aside width="200px">
       <el-menu
       default-active="2"
@@ -25,7 +25,7 @@
           <i class="el-icon-location"></i>
           <span>用户管理</span>
         </template>
-          <el-menu-item index="1-1">
+          <el-menu-item index="users">
             <i class="el-icon-menu"></i>
             用户管理
           </el-menu-item>
@@ -64,7 +64,10 @@
       </el-submenu>
     </el-menu>
     </el-aside>
-    <el-main>Main</el-main>
+    <!-- 内容区 -->
+    <el-main>
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </el-container>
 </template>
@@ -74,15 +77,15 @@ export default {
   beforeCreate() {
     const token = sessionStorage.getItem('token');
     console.log(token);
-    
-    if(token===null){
+
+    if (token === null) {
       this.$message.warning('请登录');
       this.$router.push('/login');
     }
   },
-  methods:{
+  methods: {
     // 退出时清除sessionStorage
-    logout:function() {
+    logout: function() {
       // alert(1)
       sessionStorage.clear();
       this.$router.push('/login');
@@ -125,8 +128,8 @@ export default {
   .el-main {
     background-color: #E9EEF3;
     color: #333;
-    text-align: center;
-    line-height: 160px;
+    /* text-align: center; */
+    /* line-height: 160px; */
   }
   .el-menu-vertical-demo{
     height: 100%;
